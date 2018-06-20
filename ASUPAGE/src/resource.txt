@@ -1,5 +1,20 @@
+# -- standard errors --
+message.header=<font color="red">
+message.footer = </font>
+
+# -- login errors --
+error.invalidUsername=メールアカウントをご確認お願い致します。
+error.invalidPassowrd=パスワードを入力してください。
+error.invalidLogin=メールアカウントが存在しなかったりパスワードが一致しません。
+
+# -- admin account --
+
+
 errors.header = <font color="red">
-errors.required = {0}を入力してください。<br>
+errors.required = {0}を入力してください。
 errors.footer = </font>
+errors.invalid = {0}に記号は使いません。
 
 firstName=苗字
+lastName=名前
+password=パスワード
