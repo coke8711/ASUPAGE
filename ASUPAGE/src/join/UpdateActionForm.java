@@ -1,8 +1,8 @@
 package join;
 
-import org.apache.struts.action.ActionForm;
+import org.apache.struts.validator.ValidatorForm;
 
-public class UpdateActionForm extends ActionForm{
+public class UpdateActionForm extends ValidatorForm{
 	
 
 	private String password;

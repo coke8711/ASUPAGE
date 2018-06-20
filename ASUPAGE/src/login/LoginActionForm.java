@@ -5,14 +5,9 @@
 
 package login;
 
-import javax.servlet.http.HttpServletRequest;
+import org.apache.struts.validator.ValidatorForm;
 
-import org.apache.struts.action.ActionErrors;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionForm;
-
-public class LoginActionForm extends ActionForm {
+public class LoginActionForm extends ValidatorForm {
     
     private String userName;
 
@@ -33,7 +28,7 @@ public class LoginActionForm extends ActionForm {
      * @param request The HTTP Request we are processing.
      * @return
      */
-    public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
+/*    public ActionErrors validate(ActionMapping mapping, HttpServletRequest request) {
         ActionErrors errors = new ActionErrors();
         if (userName == null || userName.length() < 1) {
             errors.add("userName", new ActionMessage("error.userName.required"));
@@ -44,7 +39,7 @@ public class LoginActionForm extends ActionForm {
             // TODO: add 'error.name.required' key to your resources
         }
         return errors;
-    }
+    }*/
 
     /**
      * @return the userName

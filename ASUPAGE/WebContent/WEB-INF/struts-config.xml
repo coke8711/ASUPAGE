@@ -22,7 +22,7 @@
 			type="join.DeleteActionForm" />
 
 		<!-- 顧客詳細情報 -->
-		<form-bean name="userdetail" type="users.UserDetailForm"/>
+		<form-bean name="userdetail" type="users.UserDetailForm" />
 		<!-- 顧客情報更新 -->
 		<form-bean name="update" type="users.UpdateForm" />
 		<!-- 顧客情報削除 -->
@@ -68,17 +68,16 @@
 
 		<action path="/info/update" name="UpdateActionForm"
 			type="join.UpdateAction" input="/WEB-INF/views/UpdateForm.jsp"
-			scope="session">
+			scope="session" validate="false">
 			<forward name="success" path="/users.do" redirect="true" />
 		</action>
 
 
 		<!-- login -->
-		<action path="/login" name="LoginActionForm"
-			type="login.LoginAction" input="/WEB-INF/views/login.jsp"
-			scope="session">
+		<action path="/login" forward="/WEB-INF/views/login.jsp"/>
+		<action path="/loginAct" name="LoginActionForm" type="login.LoginAction" input="/WEB-INF/views/login.jsp"
+			scope="session" validate="true">
 			<forward name="success" path="/users.do" redirect="true" />
-
 			<forward name="failure" path="/logout.do" />
 		</action>
 		<action path="/logout" type="login.LogoutAction"
@@ -110,18 +109,21 @@
 			<forward name="view" path="/users.do" redirect="true" />
 		</action>
 		<!-- 顧客情報削除 -->
-		<action path="/users/delete" name="delete" scope="request" type="users.DeleteAction">
+		<action path="/users/delete" name="delete" scope="request"
+			type="users.DeleteAction">
 			<forward name="ok" path="/WEB-INF/views/delete.jsp" />
 			<forward name="delete" path="/users.do" redirect="true" />
 		</action>
 		<!-- 新規顧客情報登録 -->
-		<action path="/users/new" name="new" scope="request" type="users.NewAction">
+		<action path="/users/new" name="new" scope="request"
+			type="users.NewAction">
 			<forward name="ok" path="/WEB-INF/views/new.jsp" />
 			<forward name="check" path="/WEB-INF/views/newC.jsp" />
 			<forward name="view" path="/users.do" redirect="true" />
 		</action>
 		<!-- プルダウン情報新規・削除 -->
-		<action path="/option" name="option" scope="request" type="users.OptionAction">
+		<action path="/option" name="option" scope="request"
+			type="users.OptionAction">
 			<forward name="ok" path="/WEB-INF/views/option.jsp" />
 			<forward name="view" path="/users.do" redirect="true" />
 		</action>
@@ -159,16 +161,20 @@
 		<!-- プルダウン情報新規・削除 -->
 		<action path="/admin/option" name="option" scope="request" type="admin.OptionAction">
 			<forward name="ok" path="/WEB-INF/views/admin/adminOption.jsp" />
+
 			<forward name="view" path="/admin.do" redirect="true" />
 		</action>
 
- 	</action-mappings>
+	</action-mappings>
 
 	<!--メッセージリソースファイルを設定 -->
 	<message-resources parameter="resource" />
 
 	<!-- Validatorプラグインの設定 -->
-	<plug-in className="org.apache.struts.validator.ValidatorPlugIn"> <set-property
-		property="pathnames" value="/org/apache/struts/validator/validator-rules.xml,
-		/WEB-INF/validation.xml" /> </plug-in>
+	<plug-in
+		className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames"
+			value="/org/apache/struts/validator/validator-rules.xml,
+		/WEB-INF/validation.xml" />
+	</plug-in>
 </struts-config>

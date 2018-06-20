@@ -36,7 +36,12 @@
 <body>
 
 	<table>
-		<html:form action="/login">
+		<%-- error messages--%>
+		<html:messages id="msg" header="message.header" footer="message.footer">
+			<li><b><bean:write name="msg"/></b></li>
+		</html:messages>  
+		
+		<html:form action="/loginAct">
 			<tr>
 				<td bgcolor="skyblue">Email :</td>
 				<td><html:text name="LoginActionForm" property="userName"

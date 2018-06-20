@@ -6,18 +6,42 @@
 <form-validation>
 	<formset>
 		<!-- login -->
-		<form name="logonForm">
-			<field property="username" depends="required">
-				<arg key="logonForm.username" />
+		<form name="LoginActionForm">
+			<field property="userName" depends="required">
+				<msg name="required" key="error.invalidUsername"/>
+				<arg key="error.invalidUsername" />
 			</field>
 			<field property="password" depends="required,mask">
-				<arg key="logonForm.password" />
+				<msg name="required" key="error.invalidPassowrd"/>
+				<arg key="error.invalidPassowrd" />
 				<var>
 					<var-name>mask</var-name>
 					<var-value>^[0-9a-zA-Z]*$</var-value>
 				</var>
 			</field>
 		</form>
+		<!-- Admin account check-->
+		<form name="UpdateActionForm">
+			<field property="password" depends="required,mask">
+				<msg name="required" key="errors.invalid"/>
+				<arg position ="0" key="password"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9a-zA-Z]*$</var-value>
+				</var>
+			</field>
+			<field property="firstname" depends="required">
+				<msg name="required" key="errors.required"/>
+				<arg position= "0" key="firstName"/>
+			</field>
+			<field property="lastname" depends="required">
+				<msg name="required" key="errors.required"/>
+				<arg position="0" key="lastName"/>
+			</field>
+		</form>
+		
+		
+		
 
 		<form name="update">
 			<field property="firstName" depends="required">
