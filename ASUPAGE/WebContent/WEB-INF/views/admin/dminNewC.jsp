@@ -13,7 +13,7 @@
 <title>更新確認画面</title>
 </head>
 <body>
-	<html:form action="/users/new" method="POST">
+	<html:form action="/admin/new" method="POST">
 		<table>
 			<tr>
 				<th>(フリガナ)：</th>
@@ -102,7 +102,7 @@
 		<html:hidden property="comment1" value="${form.comment1 }" />
 		<html:submit value="登録" />
 	</html:form>
-	<html:form action="/users/new" method="GET">
+	<html:form action="/admin/new" method="GET">
 		<html:submit value="戻る"></html:submit>
 	</html:form>
 </body>

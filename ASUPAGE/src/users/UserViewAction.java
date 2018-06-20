@@ -20,6 +20,8 @@ public class UserViewAction extends Action {
 		UserViewForm form = (UserViewForm) _form;
 		UserDao dao = new UserDao();
 		request.setAttribute("beans", dao.getUserAll(form));
+		request.setAttribute("pullDownListC1", dao.doPullDownClassification1());
+		request.setAttribute("pullDownListC2", dao.doPullDownClassification2());
 		return mapping.findForward("ok");
 
 	}
