@@ -17,7 +17,7 @@ pageEncoding="UTF-8"%>
 	<caption>削除情報確認</caption>
 
 		<logic:iterate id="bean" name="bean">
-		
+
 			<thead>
 				<tr>
 					<th>会社名</th>
@@ -70,26 +70,26 @@ pageEncoding="UTF-8"%>
 
 					<th>性別</th>
 					<td><bean:write name="bean" property="sex" /></td>
-					
+
 					<th>
 				</tr>
 				</thead>
-	
+
 
 			</logic:iterate>
-			
-</table>	
+
+</table>
 この内容を削除しますか？
-				<html:form action="/users/delete" method="POST">
+				<html:form action="/admin/delete" method="POST">
 				<html:hidden name ="bean" property="userId"/>
 				<html:submit value="削除します"></html:submit>
 			</html:form>
 
-			<html:form action="/userdetail" method="GET"> 
+			<html:form action="/admin/detail" method="GET">
 				<html:hidden name ="bean" property="userId"/>
  				<html:submit value="戻る" />
 			</html:form>
-			<html:form action="/users" method="GET"> 
+			<html:form action="/admin" method="GET">
  				<html:submit value="TOP" />
 			</html:form>
 

@@ -13,88 +13,77 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-
 	<table border="10" summary="hahahaha">
 		<caption>顧客詳細</caption>
 
-			<logic:iterate id="bean" name="bean">
-			
-				<thead>
-					<tr>
-						<th>会社名</th>
-						<td><bean:write name="bean" property="company" /></td>
-						<th>氏名</th>
-						<td><bean:write name="bean" property="firstName" />
-						    <bean:write name="bean" property="lastName" />
-						    <bean:write name="bean"
-								property="title" /></td>
-					</tr>
-					<tr>
-						<th>役職名</th>
-						<td><bean:write name="bean" property="positionName" /></td>
-						<th>フリガナ</th>
-						<td><bean:write name="bean" property="firstNameKana" /> <bean:write
-								name="bean" property="lastNameKana" /></td>
-					</tr>
-					<tr>
-						<th>部署名</th>
-						<td><bean:write name="bean" property="department1" /></td>
-						<th>郵便番号</th>
-						<td><bean:write name="bean" property="postal" /></td>
-					</tr>
-					<tr>
-						<th>部署名</th>
-						<td><bean:write name="bean" property="department2" /></td>
-						<th>住所</th>
-						<td><bean:write name="bean" property="street1" /> <bean:write
-								name="bean" property="street2" /></td>
-					</tr>
-					<tr>
-						<th>分類1</th>
-						<td><bean:write name="bean" property="classification1" /></td>
-						<th>分類2</th>
-						<td><bean:write name="bean" property="classification2" /></td>
-					<tr>
-						<th>TELL</th>
-						<td><bean:write name="bean" property="tell" /></td>
-						<th>FAX</th>
-						<td><bean:write name="bean" property="fax" /></td>
-					</tr>
-					<tr>
+		<logic:iterate id="bean" name="bean">
 
-						<th>MOBILE</th>
-						<td><bean:write name="bean" property="mobile" /></td>
-						<th>E-mail</th>
-						<td><bean:write name="bean" property="email" /></td>
-					</tr>
-					<tr>
+			<thead>
+				<tr>
+					<th>会社名</th>
+					<td><bean:write name="bean" property="company" /></td>
+					<th>氏名</th>
+					<td><bean:write name="bean" property="firstName" /> <bean:write
+							name="bean" property="lastName" /> <bean:write name="bean"
+							property="title" /></td>
+				</tr>
+				<tr>
+					<th>役職名</th>
+					<td><bean:write name="bean" property="positionName" /></td>
+					<th>フリガナ</th>
+					<td><bean:write name="bean" property="firstNameKana" /> <bean:write
+							name="bean" property="lastNameKana" /></td>
+				</tr>
+				<tr>
+					<th>部署名</th>
+					<td><bean:write name="bean" property="department1" /></td>
+					<th>郵便番号</th>
+					<td><bean:write name="bean" property="postal" /></td>
+				</tr>
+				<tr>
+					<th>部署名</th>
+					<td><bean:write name="bean" property="department2" /></td>
+					<th>住所</th>
+					<td><bean:write name="bean" property="street1" /> <bean:write
+							name="bean" property="street2" /></td>
+				</tr>
+				<tr>
+					<th>分類1</th>
+					<td><bean:write name="bean" property="classification1" /></td>
+					<th>分類2</th>
+					<td><bean:write name="bean" property="classification2" /></td>
+				<tr>
+					<th>TELL</th>
+					<td><bean:write name="bean" property="tell" /></td>
+					<th>FAX</th>
+					<td><bean:write name="bean" property="fax" /></td>
+				</tr>
+				<tr>
 
-						<th>性別</th>
-						<td><bean:write name="bean" property="sex" /></td>
-						<th>☆彡</th>
-						<td><html:form action="/users/update" method="GET">
-								<html:hidden name ="bean" property="userId" />
-							<html:submit value="更新する" /></html:form>
-							
-							<html:form action="/users/delete" method="GET">
-								<html:hidden name ="bean" property="userId"/>
-								<html:submit value="削除"></html:submit>
-							</html:form></td>
+					<th>MOBILE</th>
+					<td><bean:write name="bean" property="mobile" /></td>
+					<th>E-mail</th>
+					<td><bean:write name="bean" property="email" /></td>
+				</tr>
+				<tr>
 
-					</tr>
-					</thead>
-				
+					<th>性別</th>
+					<td><bean:write name="bean" property="sex" /></td>
+					<th>☆彡</th>
+					<td><html:form action="/admin/update" method="GET">
+							<html:hidden name="bean" property="userId" />
+							<html:submit value="更新する" />
+						</html:form> <html:form action="/admin/delete" method="GET">
+							<html:hidden name="bean" property="userId" />
+							<html:submit value="削除"></html:submit>
+						</html:form></td>
 
-				
-			</logic:iterate>
-
-		
-
-	</table>	
-	<html:form action="/users" method="GET"> 
-	 		<html:submit value="戻る" />
+				</tr>
+			</thead>
+		</logic:iterate>
+	</table>
+	<html:form action="/admin" method="GET">
+		<html:submit value="戻る" />
 	</html:form>
 
 </body>

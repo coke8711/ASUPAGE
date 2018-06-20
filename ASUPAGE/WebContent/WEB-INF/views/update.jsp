@@ -11,27 +11,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>顧客情報更新</title>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/CSS/users.css"type="text/css"/>
 <script src="https://ajaxzip3.github.io/ajaxzip3.js" charset="UTF-8"></script>
+<link rel="stylesheet" href="<%=request.getContextPath() %>/CSS/users.css"type="text/css"/>
 </head>
 <body>
 	<h1>顧客情報更新</h1>
 	<logic:iterate id="bean" name="beans">
 		<html:form action="/users/update" method="POST">
-			<table>
+			<table id="wakusen">
 				<tr>
-					<th>苗字</th>
-					<td><html:text name="bean" property="firstName"></html:text></td>
 					<th>(フリガナ)</th>
 					<td><html:text name="bean" property="firstNameKana"></html:text></td>
-				</tr>
-					<html:errors property="firstName" />
-				<tr>
-					<th>名前</th>
-					<td><html:text name="bean" property="lastName"></html:text></td>
 					<th>(フリガナ)</th>
 					<td><html:text name="bean" property="lastNameKana"></html:text></td>
 				</tr>
+				<tr>
+					<th>苗字</th>
+					<td><html:text name="bean" property="firstName"></html:text></td>
+					<th>名前</th>
+					<td><html:text name="bean" property="lastName"></html:text></td>
+				</tr>
+				<html:errors property="firstName" />
 				<tr>
 					<th>敬称</th>
 					<td><html:select name="bean" property="title">
