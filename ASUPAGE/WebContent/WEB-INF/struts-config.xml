@@ -86,8 +86,8 @@
 
 		</action>
 
-		<!-- <action path="/login" input="/login.jsp" name="LoginForm" scope="session" 
-			type="login.LoginAction"> <forward name="success" path="/WEB-INF/views/success.jsp" 
+		<!-- <action path="/login" input="/login.jsp" name="LoginForm" scope="session"
+			type="login.LoginAction"> <forward name="success" path="/WEB-INF/views/success.jsp"
 			/> <forward name="failure" path="/WEB-INF/views/failure.jsp" /> </action> -->
 
 		<!-- TOP画面 -->
@@ -130,45 +130,38 @@
 
 		<!-- 管理者action -->
 		<!-- TOP画面 -->
-		<action path="/admin" name="adminView" scope="request"
-			type="users.UserViewAction">
+		<action path="/admin" name="userView" scope="request"
+			type="admin.ViewAction">
 			<forward name="ok" path="/WEB-INF/views/admin/adminView.jsp"></forward>
 		</action>
 		<!-- 顧客情報詳細 -->
-		<action path="/admin/Detail" name="userdetail" scope="request"
-			type="users.UserDetailAction">
-			<forward name="ok"
-				path="/WEB-INF/views/admin/adminDetail.jsp"></forward>
+		<action path="/admin/detail" name="userdetail" scope="request"
+			type="admin.DetailAction">
+			<forward name="ok" path="/WEB-INF/views/admin/adminDetail.jsp"></forward>
 		</action>
 		<!-- 顧客情報更新 -->
 		<action path="/admin/update" name="update" scope="request"
-			type="users.UpdateAction">
-			<forward name="ok"
-				path="/WEB-INF/views/admin/adminUpdate.jsp" />
-			<forward name="check"
-				path="/WEB-INF/views/admin/adminUpdateC.jsp" />
+			type="users.UpdateAction" input="/WEB-INF/views/admin/adminUpdate.jsp"
+			validate="false">
+			<forward name="ok" path="/WEB-INF/views/admin/adminUpdate.jsp" />
+			<forward name="check" path="/WEB-INF/views/admin/adminUpdateC.jsp" />
 			<forward name="view" path="/admin.do" redirect="true" />
 		</action>
 		<!-- 顧客情報削除 -->
-		<action path="/admin/delete" name="delete" scope="request"
-			type="users.DeleteAction">
-			<forward name="ok"
-				path="/WEB-INF/views/admin/adminDelete.jsp" />
+		<action path="/admin/delete" name="delete" scope="request" type="admin.DeleteAction">
+			<forward name="ok" path="/WEB-INF/views/admin/adminDelete.jsp" />
 			<forward name="delete" path="/admin.do" redirect="true" />
 		</action>
 		<!-- 新規顧客情報登録 -->
-		<action path="/admin/new" name="new" scope="request"
-			type="users.NewAction">
-			<forward name="ok" path="/WEB-INF/views/admin/New.jsp" />
-			<forward name="check"
-				path="/WEB-INF/views/admin/adminNewC.jsp" />
+		<action path="/admin/new" name="new" scope="request" type="admin.NewAction">
+			<forward name="ok" path="/WEB-INF/views/admin/adminNew.jsp" />
+			<forward name="check" path="/WEB-INF/views/admin/adminNewC.jsp" />
 			<forward name="view" path="/admin.do" redirect="true" />
 		</action>
 		<!-- プルダウン情報新規・削除 -->
-		<action path="/admin/option" name="option" scope="request"
-			type="users.OptionAction">
-			<forward name="ok"
-				path="/WEB-INF/views/admin/adminOption.jsp" />
+		<action path="/admin/option" name="option" scope="request" type="admin.OptionAction">
+			<forward name="ok" path="/WEB-INF/views/admin/adminOption.jsp" />
+
 			<forward name="view" path="/admin.do" redirect="true" />
 		</action>
 

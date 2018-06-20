@@ -40,8 +40,8 @@ public class UserDao {
 			if (form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
 				Sql.append(" and LAST_NAME_KANA like ?");
 			}
-			if (form.getSex() != null && !form.getSex().isEmpty()) {
-				Sql.append(" and SEX like ?");
+			if (form.getCompany() != null && !form.getCompany().isEmpty()) {
+				Sql.append(" and COMPANY like ?");
 			}
 			if (form.getClassification1() != null && !form.getClassification1().isEmpty()) {
 				Sql.append(" and CLASSIFICATION1 like ?");
@@ -66,7 +66,7 @@ public class UserDao {
 
 			}
 			if (form.getMobile() != null && !form.getMobile().isEmpty()) {
-				Sql.append(" and mobile like ?");
+				Sql.append(" and MOBILE like ?");
 			}
 			if (form.getEmail() != null && !form.getEmail().isEmpty()) {
 				Sql.append(" and EMAIL like ?");
@@ -93,8 +93,8 @@ public class UserDao {
 			if (form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
 				st.setString(++index, "%" + form.getFirstNameKana() + "%");
 			}
-			if (form.getSex() != null && !form.getSex().isEmpty()) {
-				st.setString(++index, "%" + form.getSex() + "%");
+			if (form.getCompany() != null && !form.getCompany().isEmpty()) {
+				st.setString(++index, "%" + form.getCompany() + "%");
 			}
 			if (form.getClassification1() != null && !form.getClassification1().isEmpty()) {
 				st.setString(++index, "%" + form.getClassification1() + "%");
