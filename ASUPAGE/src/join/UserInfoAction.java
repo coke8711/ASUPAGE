@@ -17,12 +17,17 @@ public class UserInfoAction extends Action {
 	public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		
+		
 		//UserInfoActionForm UIForm = (UserInfoActionForm)form;
 		AdminDao dao = AdminDao.getInstance();
 		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("sessionID");
-		
+		if(id == null || id.isEmpty())
+		{
+			request.getSession().invalidate();
+			return mapping.findForward("main");
+		}
 				
 		request.setAttribute("info", dao.getUserInfo(id));
 		return mapping.findForward("success");

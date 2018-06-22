@@ -65,6 +65,7 @@ public class LoginAction extends Action {
 			// forward.setNextPath("Login.do");
 		} else {
 			session.setAttribute("sessionID", userName);
+			session.setAttribute("firstname", dao.getUserInfo(userName));
 			return mapping.findForward(SUCCESS);
 			//forward.setRedirect(true);
 			// forward.setNextPath("Login.do");

@@ -10,14 +10,14 @@
 <title>会員情報更新</title>
 
 <script type="text/javascript">
-	/*
+	<!--
 	 function checkValue() {
-	 if (!document.userInfo.password.value) {
-	 alert("パスワードを入力してください")
+	 if (document.userInfo.newPassword1.value != document.userInfo.newPassword2.value) {
+	 alert("パスワードが一致しません")
 	 return false;
 	 }
 	 }
-	 */
+	-->
 </script>
 
 </head>
@@ -37,11 +37,21 @@
 		<table>
 			<tr>
 				<td id="title">メール</td>
-				<td id="title">${info.email}</td>
+				<td><input type="text" name="email" maxlength="50" value="${info.email}"></td>
 			</tr>
 			<tr>
-				<td id="title">パスワード</td>
+				<td id="title">現在のパスワード</td>
 				<td><input type="password" name="password" maxlength="50"
+					value=""></td>
+			</tr>
+			<tr>
+				<td id="title">新しいパスワード</td>
+				<td><input type="password" name="newPassword1" maxlength="50"
+					value=""></td>
+			</tr>
+			<tr>
+				<td id="title">新しいパスワードを再入力</td>
+				<td><input type="password" name="newPassword2" maxlength="50"
 					value=""></td>
 			</tr>
 		</table>

@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -18,6 +19,15 @@ import users.DeleteForm;
 	public class DeleteAction extends Action {
 		public ActionForward execute(ActionMapping mapping, ActionForm _form, HttpServletRequest request,
 				HttpServletResponse response) throws SQLException, IOException {
+			
+			HttpSession session = request.getSession();
+			String id = (String)session.getAttribute("sessionID");
+			if(id == null || id.isEmpty())
+			{
+				request.getSession().invalidate();
+				return mapping.findForward("main");
+			}
+			
 			ActionForward forward;
 				if(request.getMethod().equals("GET")) {
 					forward = doGet(mapping,_form,response,request);

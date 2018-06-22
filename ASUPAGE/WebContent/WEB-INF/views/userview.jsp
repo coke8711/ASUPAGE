@@ -23,7 +23,7 @@
 </head>
 <body>
 	ようこそ
-	<bean:write name="LoginActionForm" property="userName"></bean:write>
+	<bean:write name="firstname" property="firstName"></bean:write>
 	<input type="button" value="情報の確認・変更" onClick="goModifyForm()" />
 	<input type="button" value="ログアウト" onClick="goLogout()" />
 	<h1>★顧客検索一覧画面</h1>

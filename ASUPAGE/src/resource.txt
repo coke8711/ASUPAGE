@@ -6,6 +6,9 @@ message.footer = </font>
 error.invalidUsername=メールアカウントをご確認お願い致します。
 error.invalidPassowrd=パスワードを入力してください。
 error.invalidLogin=メールアカウントが存在しなかったりパスワードが一致しません。
+error.invaildPassword1=パスワードが一致しません。
+error.nohalfsizekatakana=半角文字は入力できません。
+
 
 # -- admin account --
 
@@ -14,6 +17,7 @@ errors.header = <font color="red">
 errors.required = {0}を入力してください。
 errors.footer = </font>
 errors.invalid = {0}に記号は使いません。
+errors.email = 入力したメールは有効なメールではありません。
 
 firstName=苗字
 lastName=名前

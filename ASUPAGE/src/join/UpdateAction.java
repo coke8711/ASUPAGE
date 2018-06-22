@@ -20,7 +20,15 @@ public class UpdateAction extends Action {
 		AdminDao dao = AdminDao.getInstance();
 		HttpSession session = request.getSession();
 		UpdateActionForm UpdateActionForm = (UpdateActionForm)form;
+		
 		String email = (String)session.getAttribute("sessionID");
+		if(email == null || email.isEmpty())
+		{
+			request.getSession().invalidate();
+			return mapping.findForward("main");
+		}
+		
+		
 		
 		if(UpdateActionForm instanceof UpdateActionForm) {
 			ActionMessages msg = UpdateActionForm.validate(mapping, request);
@@ -31,18 +39,8 @@ public class UpdateAction extends Action {
 			}
 		}
 		
-		/*String PW = UpdateActionForm.getPassword();
-		String FN = UpdateActionForm.getFirstname();
-		String LN = UpdateActionForm.getLastname();
-		if(PW == null || FN == null || LN == null) {
-			return mapping.getInputForward();
-		}
-		*/
-		
-		
-		
-		
 		dao.doUpdate(email,UpdateActionForm);
+		session.setAttribute("sessionID", UpdateActionForm.getEmail());
 		return mapping.findForward("success"); 
 	}
 

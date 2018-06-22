@@ -19,6 +19,12 @@ public class DeleteAction extends Action {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("sessionID");
 		
+		if(id == null || id.isEmpty())
+		{
+			request.getSession().invalidate();
+			return mapping.findForward("main");
+		}
+		
 		DeleteActionForm DAForm = (DeleteActionForm)form;
 		String password = DAForm.getPassword();
 		

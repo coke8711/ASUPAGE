@@ -128,27 +128,38 @@ public class AdminDao {
 	public void doUpdate(String id, UpdateActionForm form) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
 		try {
 			StringBuffer query = new StringBuffer();
-			query.append("UPDATE ADMIN SET");
-			query.append(" PASSWORD=?, FIRST_NAME=?, LAST_NAME=?");
-			query.append(" WHERE EMAIL=?");
-
+			query.append("SELECT ADMIN_ID FROM ADMIN WHERE EMAIL=?");
 			conn = DBConnect.getConnection();
 			pstmt = conn.prepareStatement(query.toString());
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				StringBuffer query2 = new StringBuffer();
+				query2.append("UPDATE ADMIN SET");
+				query2.append(" EMAIL=?, PASSWORD=?, FIRST_NAME=?, LAST_NAME=?");
+				query2.append(" WHERE ADMIN_ID=?");
+				
+				pstmt = conn.prepareStatement(query2.toString());
+				
+				
+				
+				conn.setAutoCommit(false);
 
-			conn.setAutoCommit(false);
+				pstmt.setString(1, form.getEmail());
+				pstmt.setString(2, form.getPassword());
+				pstmt.setString(3, form.getFirstname());
+				pstmt.setString(4, form.getLastname());
+				pstmt.setString(5, rs.getString("ADMIN_ID"));
 
-			pstmt.setString(1, form.getPassword());
-			pstmt.setString(2, form.getFirstname());
-			pstmt.setString(3, form.getLastname());
-			pstmt.setString(4, id);
+				pstmt.executeUpdate();
 
-			pstmt.executeUpdate();
-
-			conn.commit();
-
+				conn.commit();
+			}
 		} catch (
 
 		Exception sqle) {

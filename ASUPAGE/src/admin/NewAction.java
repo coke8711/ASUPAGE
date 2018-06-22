@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.struts.action.Action;
 import org.apache.struts.action.ActionForm;
@@ -19,6 +20,15 @@ public class NewAction extends Action {
 	@Override
 	public ActionForward execute(ActionMapping mapping, ActionForm _form, HttpServletRequest request,
 			HttpServletResponse response) throws SQLException, NamingException {
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("sessionID");
+		if(id == null || id.isEmpty())
+		{
+			request.getSession().invalidate();
+			return mapping.findForward("main");
+		}
+		
 		if(request.getMethod().equals("GET")) {
 			forward = doGet (mapping,_form,request,response);
 		}

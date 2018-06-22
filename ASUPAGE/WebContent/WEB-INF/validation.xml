@@ -4,49 +4,80 @@
   "http://jakarta.apache.org/commons/dtds/validator_1_3_0.dtd">
 
 <form-validation>
+
+
 	<formset>
 		<!-- login -->
 		<form name="LoginActionForm">
-			<field property="userName" depends="required">
+			<field property="userName" depends="required,nothalfsizekatakana">
 				<msg name="required" key="error.invalidUsername"/>
 				<arg key="error.invalidUsername" />
+				<msg name="required,nothalfsizekatakana" key="error.nohalfsizekatakana"/>
 			</field>
-			<field property="password" depends="required,mask">
+			<field property="password" depends="required,mask,nothalfsizekatakana">
 				<msg name="required" key="error.invalidPassowrd"/>
 				<arg key="error.invalidPassowrd" />
 				<var>
 					<var-name>mask</var-name>
 					<var-value>^[0-9a-zA-Z]*$</var-value>
 				</var>
+				<msg name="required,nothalfsizekatakana" key="error.nohalfsizekatakana"/>
 			</field>
 		</form>
 		<!-- Admin account check-->
 		<form name="UpdateActionForm">
-			<field property="password" depends="required,mask">
-				<msg name="required" key="errors.invalid"/>
+			<field property="email" depends="required,nothalfsizekatakana">
+				<msg name="required" key="errors.email"/>
+				<arg position= "0" key="firstName"/>
+				<msg name="required,nothalfsizekatakana" key="error.nohalfsizekatakana"/>
+			</field>
+			<field property="password" depends="required,mask,nothalfsizekatakana">
+				<msg name="mask" key="errors.invalid" />
+				<msg name="required" key="errors.required"/>
 				<arg position ="0" key="password"/>
 				<var>
 					<var-name>mask</var-name>
 					<var-value>^[0-9a-zA-Z]*$</var-value>
 				</var>
+				<msg name="required,nothalfsizekatakana" key="error.nohalfsizekatakana"/>
 			</field>
-			<field property="firstname" depends="required">
+			<field property="newPassword1" depends="required,mask,nothalfsizekatakana">
+				<msg name="mask" key="errors.invalid" />
+				<msg name="required" key="errors.required"/>
+				<arg position ="0" key="password"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9a-zA-Z]*$</var-value>
+				</var>
+				<msg name="required,nothalfsizekatakana" key="error.nohalfsizekatakana"/>
+			</field>
+			<field property="newPassword2" depends="required,mask,nothalfsizekatakana">
+				<msg name="mask" key="errors.invalid" />
+				<msg name="required" key="errors.required"/>
+				<arg position ="0" key="password"/>
+				<var>
+					<var-name>mask</var-name>
+					<var-value>^[0-9a-zA-Z]*$</var-value>
+				</var>
+				<msg name="required,nothalfsizekatakana" key="error.nohalfsizekatakana"/>
+			</field>
+			<field property="firstname" depends="required,nothalfsizekatakana">
 				<msg name="required" key="errors.required"/>
 				<arg position= "0" key="firstName"/>
+				<msg name="required,nothalfsizekatakana" key="error.nohalfsizekatakana"/>
 			</field>
-			<field property="lastname" depends="required">
+			<field property="lastname" depends="required,nothalfsizekatakana">
 				<msg name="required" key="errors.required"/>
 				<arg position="0" key="lastName"/>
+				<msg name="required,nothalfsizekatakana" key="error.nohalfsizekatakana"/>
 			</field>
 		</form>
-		
-		
-		
 
 		<form name="update">
-			<field property="firstName" depends="required">
+			<field property="firstName" depends="required,nothalfsizekatakana">
 				<msg name="required" key="errors.required" />
 				<arg position="0" key="firstName" />
+				<msg name="required,nothalfsizekatakana" key="error.nohalfsizekatakana"/>
 			</field>
 		</form>
 	</formset>
