@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List"%>
 <%@ page import="beans.UserBean"%>
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html"%>
@@ -14,7 +13,7 @@
 <title>検索画面</title>
 <script type="text/javascript">
 	function goModifyForm() {
-		location.href = "info.do";
+		location.href = "profile.do";
 	}
 	function goLogout() {
 		location.href = "logout.do";
@@ -23,27 +22,13 @@
 </head>
 <body>
 	ようこそ
-	<bean:write name="LoginActionForm" property="userName"></bean:write>
+	${admin.firstName}様
 	<input type="button" value="情報の確認・変更" onClick="goModifyForm()" />
 	<input type="button" value="ログアウト" onClick="goLogout()" />
+	<html:form action="/admin/option" method="GET">
+		<html:submit value="プルダウン追加・削除"></html:submit>
+	</html:form>
 	<h1>★顧客検索一覧画面</h1>
-	<html:form action="/option" method="GET">
-		<html:submit value="設定"></html:submit>
-	</html:form>
-	<%--
-
-	<h3>
-		Welcome to
-		<bean:write scope="session" name="user" property="firstName" />
-		様!!
-	</h3> --%>
-	<%-- <html:form action="/logout" method="GET">
-		<html:submit value="ログアウト"></html:submit>
-	</html:form>
-	<html:form action="/userdetail" method="GET">
-		<html:submit value="会員様詳細"></html:submit>
-	</html:form>
- --%>
 	<h1>検索</h1>
 	<html:form action="/admin" method="GET">
 		<table id="center" border="3" summary="hahahaha">
@@ -85,7 +70,7 @@
 				<th>住所(都道府県)</th>
 				<td><html:text property="street1" /></td>
 				<th>住所(詳細住所)</th>
-				<td><html:text property="street1" /></td>
+				<td><html:text property="street2" /></td>
 			</tr>
 			<tr>
 				<th>電話番号</th>
@@ -105,7 +90,7 @@
 	<table border="10" summary="hahahaha">
 		<caption>
 			顧客一覧
-			<html:form action="/admin/new.do" method="GET">
+			<html:form action="/admin/new" method="GET">
 				<html:submit value="新規登録"></html:submit>
 			</html:form>
 		</caption>
@@ -134,8 +119,26 @@
 					</tr>
 				</html:form>
 			</logic:iterate>
-
 		</tbody>
 	</table>
+	<html:form action="/admin" method="GET" styleId="commandv ">
+		<logic:iterate id="bean" name="Page">
+			<html:submit property="offset" value="${bean}" />
+		</logic:iterate>
+		<html:hidden property="firstNameKana" />
+		<html:hidden property="lastNameKana" />
+		<html:hidden property="firstName" />
+		<html:hidden property="lastName" />
+		<html:hidden property="company" />
+		<html:hidden property="positionName" />
+		<html:hidden property="classification1" />
+		<html:hidden property="classification2" />
+		<html:hidden property="street1" />
+		<html:hidden property="street2" />
+		<html:hidden property="tell" />
+		<html:hidden property="fax" />
+		<html:hidden property="mobile" />
+		<html:hidden property="email" />
+	</html:form>
 </body>
 </html>

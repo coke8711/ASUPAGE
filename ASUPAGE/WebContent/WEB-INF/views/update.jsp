@@ -113,7 +113,7 @@
 			<html:submit value="更新内容確認" />
 		</html:form>
 	</logic:iterate>
-	<html:form action="/userdetail" method="GET">
+	<html:form action="/users/detail" method="GET">
 		<html:hidden property="userId" value="${bean.userId }" />
 		<html:submit value="戻る"/>
 	</html:form>

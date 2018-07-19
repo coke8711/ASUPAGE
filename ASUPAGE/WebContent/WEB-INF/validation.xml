@@ -5,19 +5,6 @@
 
 <form-validation>
 	<formset>
-		<!-- login -->
-		<form name="logonForm">
-			<field property="username" depends="required">
-				<arg key="logonForm.username" />
-			</field>
-			<field property="password" depends="required,mask">
-				<arg key="logonForm.password" />
-				<var>
-					<var-name>mask</var-name>
-					<var-value>^[0-9a-zA-Z]*$</var-value>
-				</var>
-			</field>
-		</form>
 
 		<form name="update">
 			<field property="firstName" depends="required">

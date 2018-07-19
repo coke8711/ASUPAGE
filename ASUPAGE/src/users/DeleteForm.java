@@ -1,10 +1,10 @@
 
 	package users;
 
-	import org.apache.struts.action.ActionForm;
+	import org.apache.struts.validator.ValidatorForm;
 
-	public class DeleteForm extends ActionForm {
-		
+	public class DeleteForm extends ValidatorForm {
+
 		private int userId;
 		private String firstName;
 		private String lastName;
@@ -26,7 +26,7 @@
 		private String mobile;
 		private String email;
 		private String comment;
-		
+
 	public String getStreet3() {
 			return street1 + street2;
 		}

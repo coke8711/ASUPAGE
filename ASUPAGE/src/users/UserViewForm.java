@@ -2,20 +2,9 @@ package users;
 
 
 
-import org.apache.struts.action.ActionForm;
+import org.apache.struts.validator.ValidatorForm;
 
-public class UserViewForm extends ActionForm{
-//ユーザー情報
-/*	private int userId;
-	private String firstName;
-	private String lastName;
-	private LocalDateTime registDate;
-	private LocalDateTime upDate;
-	private String email;
-	private String password;
-	private int loginMissCount;
-	private LocalDateTime loginDate;
-	*/
+public class UserViewForm extends ValidatorForm{
 //顧客情報
 	private int userId;
 	private String firstName;
@@ -38,6 +27,8 @@ public class UserViewForm extends ActionForm{
 	private String email;
 	private String street2;
 	private String comment1;
+	private int offset = 1;
+	private int orderby = 0;
 
 	public int getUserId() {
 		return userId;
@@ -164,6 +155,18 @@ public class UserViewForm extends ActionForm{
 	}
 	public void setComment1(String comment1) {
 		this.comment1 = comment1;
+	}
+	public int getOffset() {
+		return offset;
+	}
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+	public int getOrderby() {
+		return orderby;
+	}
+	public void setOrderby(int orderby) {
+		this.orderby = orderby;
 	}
 
 }

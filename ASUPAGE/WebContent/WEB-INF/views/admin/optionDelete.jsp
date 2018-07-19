@@ -15,13 +15,6 @@
 	<h1>PullDown項目追加</h1>
 	<html:form action="/option" method="POST">
 		<table>
-			<%-- <tr>
-				<html:select property="title">
-					<logic:iterate id="list" name="pullDownListT">
-						<html:option value="${list.title }" />
-					</logic:iterate>
-				</html:select>
-			</tr> --%>
 			<tr>
 				<th>敬称</th>
 				<td>
@@ -35,13 +28,6 @@
 
 	<html:form action="/option" method="POST">
 		<table>
-			<%-- <tr>
-				<html:select property="pullDownListC1">
-					<logic:iterate id="list" name="pullDownListC1">
-						<html:option value="${list.classification1 }" />
-					</logic:iterate>
-				</html:select>
-			</tr> --%>
 			<tr>
 				<th>分類1</th>
 				<td>
@@ -55,13 +41,6 @@
 
 	<html:form action="/option" method="POST">
 		<table>
-			<%-- <tr>
-				<html:select property="pullDownListC2">
-					<logic:iterate id="list" name="pullDownListC2">
-						<html:option value="${list.classification2 }" />
-					</logic:iterate>
-				</html:select>
-			</tr> --%>
 			<tr>
 				<th>分類2</th>
 				<td>

@@ -50,6 +50,12 @@ public class OptionAction extends Action {
 				dao.classInsert1(form.getClassification1());break;
 			case 3:
 				dao.classInsert2(form.getClassification2());break;
+			case 4:
+				dao.titleDelete(form.getTitle());break;
+			case 5:
+				dao.classDelete1(form.getClassification1());break;
+			case 6:
+				dao.classDelete2(form.getClassification2());break;
 		}
 
 			return mapping.findForward("view");

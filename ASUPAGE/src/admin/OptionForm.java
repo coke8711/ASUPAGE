@@ -6,7 +6,6 @@ public class OptionForm extends ActionForm {
 	private String title;
 	private String classification1;
 	private String classification2;
-
 	private int select = 0;
 
 	public String getTitle() {
@@ -40,5 +39,4 @@ public class OptionForm extends ActionForm {
 	public void setSelect(int select) {
 		this.select = select;
 	}
-
 }

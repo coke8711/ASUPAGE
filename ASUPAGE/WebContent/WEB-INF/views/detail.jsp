@@ -13,14 +13,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-
 	<table border="10" summary="hahahaha">
 		<caption>顧客詳細</caption>
 
 			<logic:iterate id="bean" name="bean">
-			
+
 				<thead>
 					<tr>
 						<th>会社名</th>
@@ -77,7 +74,7 @@
 						<td><html:form action="/users/update" method="GET">
 								<html:hidden name ="bean" property="userId" />
 							<html:submit value="更新する" /></html:form>
-							
+
 							<html:form action="/users/delete" method="GET">
 								<html:hidden name ="bean" property="userId"/>
 								<html:submit value="削除"></html:submit>
@@ -85,15 +82,15 @@
 
 					</tr>
 					</thead>
-				
 
-				
+
+
 			</logic:iterate>
 
-		
 
-	</table>	
-	<html:form action="/users" method="GET"> 
+
+	</table>
+	<html:form action="/users" method="GET">
 	 		<html:submit value="戻る" />
 	</html:form>
 

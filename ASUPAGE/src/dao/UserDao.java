@@ -22,108 +22,19 @@ public class UserDao {
 		PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
 		ResultSet rs = null;
 		try {
-			String sql = "SELECT * FROM CUSTOMER WHERE 1=1";// 準備//
+			String sql = "select * from(SELECT USER_ID,FIRST_NAME,LAST_NAME,FIRST_NAME_KANA,LAST_NAME_KANA,TITLE,SEX,CLASSIFICATION1,CLASSIFICATION2,POSITION_NAME,COMPANY,DEPARTMENT1,DEPARTMENT2,POSTAL,STREET1,TELL,FAX,MOBILE,EMAIL,INSERT_DATE,UPDATE_DATE,CHANGEDATE_DATE,STREET2,COMMENT1, rownum as rn FROM (SELECT * FROM CUSTOMER";// 準備//
 
 			StringBuilder Sql = new StringBuilder(sql);
-			if (form.getUserId() != 0) {
-				Sql.append(" and USER_ID = ?");
+			if(form.getOrderby() == 0) {
+				Sql.append(" ORDER BY USER_ID ASC) WHERE 1=1");
+			}else {
+				Sql.append(" ORDER BY USER_ID DESC) WHERE 1=1");
 			}
-			if (form.getFirstName() != null && !form.getFirstName().isEmpty()) {
-				Sql.append(" and FIRST_NAME like ?");
-			}
-			if (form.getLastName() != null && !form.getLastName().isEmpty()) {
-				Sql.append(" and LAST_NAME like ?");
-			}
-			if (form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
-				Sql.append(" and FIRST_NAME_KANA like ?");
-			}
-			if (form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
-				Sql.append(" and LAST_NAME_KANA like ?");
-			}
-			if (form.getCompany() != null && !form.getCompany().isEmpty()) {
-				Sql.append(" and COMPANY like ?");
-			}
-			if (form.getClassification1() != null && !form.getClassification1().isEmpty()) {
-				Sql.append(" and CLASSIFICATION1 like ?");
-			}
-			if (form.getClassification2() != null && !form.getClassification2().isEmpty()) {
-				Sql.append(" and CLASSIFICATION2 like ?");
-			}
-			if (form.getPositionName() != null && !form.getPositionName().isEmpty()) {
-				Sql.append(" and POSITION_NAME like ?");
-			}
-			if (form.getStreet1() != null && !form.getStreet1().isEmpty()) {
-				Sql.append(" and STREET1 like ?");
-			}
-			if (form.getStreet2() != null && !form.getStreet2().isEmpty()) {
-				Sql.append(" and STREET2 like ?");
-			}
-			if (form.getTell() != null && !form.getTell().isEmpty()) {
-				Sql.append(" and TELL like ?");
-			}
-			if (form.getFax() != null && !form.getFax().isEmpty()) {
-				Sql.append(" and FAX like ?");
-
-			}
-			if (form.getMobile() != null && !form.getMobile().isEmpty()) {
-				Sql.append(" and MOBILE like ?");
-			}
-			if (form.getEmail() != null && !form.getEmail().isEmpty()) {
-				Sql.append(" and EMAIL like ?");
-			}
-			Sql.append(" ORDER BY  USER_ID ASC");
-
+			sql(form,Sql,1);
 			// ドライバロード.DB接続.SQLをセット
 			st = db.connect().prepareStatement(Sql.toString());
-
 			int index = 0;
-
-			if (form.getUserId() != 0) {
-				st.setInt(++index, form.getUserId());
-			}
-			if (form.getFirstName() != null && !form.getFirstName().isEmpty()) {
-				st.setString(++index, "%" + form.getFirstName() + "%");
-			}
-			if (form.getLastName() != null && !form.getLastName().isEmpty()) {
-				st.setString(++index, "%" + form.getLastName() + "%");
-			}
-			if (form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
-				st.setString(++index, "%" + form.getFirstNameKana() + "%");
-			}
-			if (form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
-				st.setString(++index, "%" + form.getFirstNameKana() + "%");
-			}
-			if (form.getCompany() != null && !form.getCompany().isEmpty()) {
-				st.setString(++index, "%" + form.getCompany() + "%");
-			}
-			if (form.getClassification1() != null && !form.getClassification1().isEmpty()) {
-				st.setString(++index, "%" + form.getClassification1() + "%");
-			}
-			if (form.getClassification2() != null && !form.getClassification2().isEmpty()) {
-				st.setString(++index, "%" + form.getClassification2() + "%");
-			}
-			if (form.getPositionName() != null && !form.getPositionName().isEmpty()) {
-				st.setString(++index, "%" + form.getPositionName() + "%");
-			}
-			if (form.getStreet1() != null && !form.getStreet1().isEmpty()) {
-				st.setString(++index, "%" + form.getStreet1() + "%");
-			}
-			if (form.getStreet2() != null && !form.getStreet2().isEmpty()) {
-				st.setString(++index, "%" + form.getStreet2() + "%");
-			}
-			if (form.getTell() != null && !form.getTell().isEmpty()) {
-				st.setString(++index, "%" + form.getTell() + "%");
-			}
-			if (form.getFax() != null && !form.getFax().isEmpty()) {
-				st.setString(++index, "%" + form.getFax() + "%");
-			}
-			if (form.getMobile() != null && !form.getMobile().isEmpty()) {
-				st.setString(++index, "%" + form.getMobile() + "%");
-			}
-			if (form.getEmail() != null && !form.getEmail().isEmpty()) {
-				st.setString(++index, "%" + form.getEmail() + "%");
-			}
-
+			st = setSql(form,st,index,1);
 			rs = st.executeQuery();// 実行と結果の戻り//
 			users = new ArrayList<>();
 			while (rs.next()) {// 次のレコードに下がれればの条件式//
@@ -160,6 +71,111 @@ public class UserDao {
 
 	}
 
+	public void sql(UserViewForm form,StringBuilder Sql,int limit) {
+		if (form.getUserId() != 0) {
+			Sql.append(" and USER_ID = ?");
+		}
+		if (form.getFirstName() != null && !form.getFirstName().isEmpty()) {
+			Sql.append(" and FIRST_NAME like ?");
+		}
+		if (form.getLastName() != null && !form.getLastName().isEmpty()) {
+			Sql.append(" and LAST_NAME like ?");
+		}
+		if (form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
+			Sql.append(" and FIRST_NAME_KANA like ?");
+		}
+		if (form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
+			Sql.append(" and LAST_NAME_KANA like ?");
+		}
+		if (form.getCompany() != null && !form.getCompany().isEmpty()) {
+			Sql.append(" and COMPANY like ?");
+		}
+		if (form.getClassification1() != null && !form.getClassification1().isEmpty()) {
+			Sql.append(" and CLASSIFICATION1 LIKE ?");
+		}
+		if (form.getClassification2() != null && !form.getClassification2().isEmpty()) {
+			Sql.append(" and CLASSIFICATION2 like ?");
+		}
+		if (form.getPositionName() != null && !form.getPositionName().isEmpty()) {
+			Sql.append(" and POSITION_NAME like ?");
+		}
+		if (form.getStreet1() != null && !form.getStreet1().isEmpty()) {
+			Sql.append(" and STREET1 like ?");
+		}
+		if (form.getStreet2() != null && !form.getStreet2().isEmpty()) {
+			Sql.append(" and STREET2 like ?");
+		}
+		if (form.getTell() != null && !form.getTell().isEmpty()) {
+			Sql.append(" and TELL like ?");
+		}
+		if (form.getFax() != null && !form.getFax().isEmpty()) {
+			Sql.append(" and FAX like ?");
+
+		}
+		if (form.getMobile() != null && !form.getMobile().isEmpty()) {
+			Sql.append(" and MOBILE like ?");
+		}
+		if (form.getEmail() != null && !form.getEmail().isEmpty()) {
+			Sql.append(" and EMAIL like ?");
+		}
+		if(limit == 1) {
+			Sql.append(" )where rn between ? and ?");
+		}
+		}
+
+	public PreparedStatement setSql(UserViewForm form,PreparedStatement st,int index,int limit) throws SQLException {
+
+		if (form.getUserId() != 0) {
+			st.setInt(++index, form.getUserId());
+		}
+		if (form.getFirstName() != null && !form.getFirstName().isEmpty()) {
+			st.setString(++index, "%" + form.getFirstName() + "%");
+		}
+		if (form.getLastName() != null && !form.getLastName().isEmpty()) {
+			st.setString(++index, "%" + form.getLastName() + "%");
+		}
+		if (form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
+			st.setString(++index, "%" + form.getFirstNameKana() + "%");
+		}
+		if (form.getFirstNameKana() != null && !form.getFirstNameKana().isEmpty()) {
+			st.setString(++index, "%" + form.getFirstNameKana() + "%");
+		}
+		if (form.getCompany() != null && !form.getCompany().isEmpty()) {
+			st.setString(++index, "%" + form.getCompany() + "%");
+		}
+		if (form.getClassification1() != null && !form.getClassification1().isEmpty()) {
+			st.setString(++index, "%" + form.getClassification1() + "%");
+		}
+		if (form.getClassification2() != null && !form.getClassification2().isEmpty()) {
+			st.setString(++index, "%" + form.getClassification2() + "%");
+		}
+		if (form.getPositionName() != null && !form.getPositionName().isEmpty()) {
+			st.setString(++index, "%" + form.getPositionName() + "%");
+		}
+		if (form.getStreet1() != null && !form.getStreet1().isEmpty()) {
+			st.setString(++index, "%" + form.getStreet1() + "%");
+		}
+		if (form.getStreet2() != null && !form.getStreet2().isEmpty()) {
+			st.setString(++index, "%" + form.getStreet2() + "%");
+		}
+		if (form.getTell() != null && !form.getTell().isEmpty()) {
+			st.setString(++index, "%" + form.getTell() + "%");
+		}
+		if (form.getFax() != null && !form.getFax().isEmpty()) {
+			st.setString(++index, "%" + form.getFax() + "%");
+		}
+		if (form.getMobile() != null && !form.getMobile().isEmpty()) {
+			st.setString(++index, "%" + form.getMobile() + "%");
+		}
+		if (form.getEmail() != null && !form.getEmail().isEmpty()) {
+			st.setString(++index, "%" + form.getEmail() + "%");
+		}
+		if(limit == 1) {
+			st.setInt(++index,(form.getOffset()-1) * 10 + 1);
+			st.setInt(++index,(form.getOffset()-1) * 10 + 10);
+		}
+		return st;
+	}
 	//Update
 	public void doUpdate(UpdateForm form) {
 		DBConnector db = new DBConnector();
@@ -350,6 +366,7 @@ public class UserDao {
 
 	}
 
+
 	//PullDown 敬称追加書き込み
 	public void titleInsert(String titleName) {
 		DBConnector db = new DBConnector();
@@ -397,6 +414,54 @@ public class UserDao {
 			db.close(st);
 		}
 	}
+
+	//PullDown 敬称削除
+		public void titleDelete(String titleName) {
+			DBConnector db = new DBConnector();
+			PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
+			try {
+				st = db.connect().prepareStatement("DELETE FROM PULLDOWN_TITLE WHERE TITLE_NAME = ?");
+				st.setString(1, titleName);
+				st.executeUpdate();
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			} finally {
+				db.close(st);
+			}
+		}
+
+		//PullDown 分類1削除
+		public void classDelete1(String classification1) {
+			DBConnector db = new DBConnector();
+			PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
+			try {
+				st = db.connect().prepareStatement("DELETE FROM PULLDOWN_CLASSIFICATION1 WHERE CLASSIFICATION1_NAME = ?");
+				st.setString(1, classification1);
+				st.executeUpdate();
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			} finally {
+				db.close(st);
+			}
+		}
+
+		//PullDown 分類2削除
+		public void classDelete2(String classification2) {
+			DBConnector db = new DBConnector();
+			PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
+			try {
+				st = db.connect().prepareStatement("DELETE FROM PULLDOWN_CLASSIFICATION2 WEHRE CLASSIFICATION2_NAME = ?");
+				st.setString(1, classification2);
+				st.executeUpdate();
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			} finally {
+				db.close(st);
+			}
+		}
 
 	//顧客データ削除用
 	public void doDelete(DeleteForm form) throws SQLException {
@@ -474,5 +539,46 @@ public class UserDao {
 		return ++maxId;
 
 	}
+
+	// ページ送り
+		public int [] getPage(UserViewForm form) {
+			DBConnector db = new DBConnector();
+			PreparedStatement st = null; // SQLを送るとき必要 /クラス型のst
+			ResultSet rs = null;
+			int max = 10;
+			int record = 0;
+			int page = 0;
+			int button[] = null;
+			try {
+				String sql = "SELECT count(*) AS record FROM customer WHERE 1=1";
+						// ドライバロード.DB接続.SQLをセット
+
+				StringBuilder Sql = new StringBuilder(sql);
+
+				sql(form,Sql,0);
+						// ドライバロード.DB接続.SQLをセット
+				st = db.connect().prepareStatement(Sql.toString());
+
+				int index = 0;
+
+				st = setSql(form,st,index,0);
+				rs = st.executeQuery();// 実行と結果の戻り//
+				if(rs.next()) {
+					record = rs.getInt("record");								//レコード数取得
+				}
+				page = (record / max) + (record % 10 == 0 ? 0 : 1);
+
+				button = new int [page];
+				for(int i = 0; i < button.length; i++) {
+					button[i] = i + 1;
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				db.close(st, rs);
+			}
+			return button;
+		}
 
 }
